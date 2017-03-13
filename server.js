@@ -9,7 +9,7 @@ var config = require('./config/config'),
 var db = mongoose(),
 	app = express();
 	//passport = passport();
-
+ 
 app.listen(config.port);
 
 module.exports = app;

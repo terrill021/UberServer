@@ -2,15 +2,16 @@ var Drivers = require('mongoose').model('Drivers');
 
 //Crear un nuevo Cliente
 exports.create = function(req, res, next) {	
+	
 	console.log(req.body);
 	var drivers = new Drivers(req.body);
 	
-		drivers.save(function(err) {
+		drivers.save(function(err, driver) {
 			if (err) {
 			return next(err);
 			}	
 			else {
-			res.json(drivers);
+			res.json(driver);
 			}
 		}); 
 };

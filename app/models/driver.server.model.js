@@ -8,7 +8,7 @@ var DriverSchema = new Schema({
 	email : String,
 	phone : String, 
 	creationDate : {type : Date, default : Date.now},
-	vacant : {type : Boolean, index : true, default : true}
+	vacant : {type : Boolean, default : true}
 });
 
 mongoose.model('Drivers', DriverSchema);

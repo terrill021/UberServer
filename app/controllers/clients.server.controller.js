@@ -6,12 +6,12 @@ exports.create = function(req, res, next) {
 	req.body.creationDate = new Date();//por ahora
 	var clients = new Clients(req.body);
 	
-		clients.save(function(err) {
+		clients.save(function(err, client) {
 			if (err) {
 			return next(err);
 			}	
 			else {
-			res.json(clients);
+			res.json(client);
 			}
 		}); 
 };
