@@ -3,5 +3,5 @@ var port = 1337;
 
 module.exports = {
 	port: port,
-	db: 'mongodb://localhost/UberServer'
+	db: 'mongodb://localhost/todos'
 }
