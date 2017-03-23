@@ -4,7 +4,7 @@ var config = require('./config'),
 
 //se conecta a la base de datos y rquiere los modelos
 module.exports = function() {
-	mongoose.Promise = require ('bluebird');
+	//mongoose.Promise = require ('bluebird');
 	var db = mongoose.connect(config.db);
 
 	//importar los modelos 

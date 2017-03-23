@@ -32,24 +32,30 @@ exports.list = function(req, res, next) {
 
 //Mostrar clientes
 exports.read = function(req, res) {
-	console.log("Mostrando cliente por id");	
+	console.log("read");	
 	res.json(req.client);
 };
 
 //buscar un cliente, y guardarlo en una variable
-exports.clientByID = function(req, res, next, id) {
+exports.clientByID = function(req, res, next) {
 	console.log("clientByID");
+	
 	Clients.findOne({
-	_id: id
+	_id: req.params.clientId || req.trip.client._id
 	},
 	function(err, client) {
 		if (err) {
 			return next(err);
 		}
 		else {
-			if(!client) {res.json({error : true, message:"El cliente no existe"});}
+			if(client == null) {
+				res.json({error : true, message:"El cliente no existe"});
+			}
+			else{
 			req.client = client;
+			console.log("Cliente encontrado " + client._id);
 			next();
+			}
 		}
 	}
 	);

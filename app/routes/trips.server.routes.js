@@ -4,27 +4,23 @@ var router = require('express').Router();
 
 var trips = require('../../app/controllers/trips.server.controller');
 var clients = require('../../app/controllers/clients.server.controller');
+var drivers = require('../../app/controllers/drivers.server.controller');
 
 //metodos REST
 module.exports = function(app) {
 
-//app.param('tripId', trips.tripById);
-//get y post
-router.post('/trips/:clientId', trips.create);
+router.post('/trips/:clientId', clients.clientByID, drivers.searhVacantDriver,
+							    trips.createTrip, drivers.lockDriver, trips.confirmTrip);
+
+//Consultar viajes de un cliente
 router.get('/trips/:clientId', trips.list);
-router.post('/trips/cash/:clientId', trips.tripById, trips.cash);
+
+//cobrar un viaje
+router.post('/trips/cash/:tripId', trips.tripById, clients.clientByID,
+								   trips.calculateTripValue, trips.cashTrip,
+								   drivers.unlockDriver, trips.reportCashedTrip);
+
 //
-
-//app.route('/trips/:clientId').post(trips.create).get(trips.list);
-//ruta para cobrar un viaje.
-//app.route('/trips/cashtrip/:tripId').post(trips.cash);
-
-//midlewares
-//app.param('clientId', trips.clientByID);
-
-//app.param('tripId', trips.clientByID);
-//comitt
-
 app.use('/', router);
 };
 
