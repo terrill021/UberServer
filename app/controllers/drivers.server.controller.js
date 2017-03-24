@@ -95,6 +95,7 @@ exports.unlockDriver = function(req, res, next) {
 		}
 		else{
 			console.log("conductor desbloqueado");
+			//LLama al siguiente midleware
 			next();
 		}
 	});
@@ -106,7 +107,7 @@ exports.driverByID = function(req, res, next) {
 	console.log("driverByID");
 
 	Drivers.findOne({
-		_id: req.params.driverId
+		_id: req.params.driverId || req.trip.driver
 		},
 		function(err, driver) {
 			if (err) {

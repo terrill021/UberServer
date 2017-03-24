@@ -17,8 +17,9 @@ router.get('/trips/:clientId', trips.list);
 
 //cobrar un viaje
 router.post('/trips/cash/:tripId', trips.tripById, clients.clientByID,
-								   trips.calculateTripValue, trips.cashTrip,
-								   drivers.unlockDriver, trips.reportCashedTrip);
+								   drivers.driverByID, trips.calculateTripValue,
+								   trips.cashTrip, drivers.unlockDriver,
+								   trips.reportCashedTrip);
 
 //
 app.use('/', router);

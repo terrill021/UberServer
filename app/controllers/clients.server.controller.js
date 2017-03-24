@@ -41,7 +41,7 @@ exports.clientByID = function(req, res, next) {
 	console.log("clientByID");
 	
 	Clients.findOne({
-	_id: req.params.clientId || req.trip.client._id
+	_id: req.params.clientId || req.trip.client
 	},
 	function(err, client) {
 		if (err) {
