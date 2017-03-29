@@ -2,8 +2,6 @@ var Trips = require('mongoose').model('Trips');
 var Drivers = require('mongoose').model('Drivers');
 var Clients = require('mongoose').model('Clients');
 
-
-
 //Crear un nuevo viaje
 exports.createTrip = function(req, res, next) {	
 
@@ -39,14 +37,28 @@ exports.searhVacantDriver = function(req, res, next){
 			return next(err);
 		}else{
 			// Si no hay conductores disponibles
-			if(driver == null || valor.length == 0 || /^\s+$/.test(valor)){				
-				res.json({error: true, message:"Lo sentimos, no hay conductores disponibles"});
+			if(driver == null){				
+				res.json({error: true, message: "Lo sentimos, no hay conductores disponibles"});
 			}
 			//Guardo conductor en el request
 			console.log ="coductor asignado :" + driver;
 			req.driver = driver;
 			//console.log(req.body);
 		}
+	}); 
+};
+
+
+//Obtener viaje sin cobrar de un conductor
+exports.getUncashedTrips = function(req, res, next){
+	//Agregar coductor al cuerpo de la petición	
+	Trips.findOne({ driver : req.params.driverId, cashed : false}, function(err, trip){
+		if(err){
+			return next(err);
+		}else{
+			// respuesta				
+				res.json({trip : trip, error = false, message="OK"});			
+			}
 	}); 
 };
 
@@ -71,11 +83,14 @@ exports.read = function(req, res) {
 //confirmar solicitud de viaje
 exports.confirmTrip = function(req, res, next) {	
 	//notificar al cliente
-
 	//Notificar al conductor
 
+	//preparar respuesta
+	req.res.trip = req.trip;
+	req.res.message = "The request was procesed correctly";
+	req.res.error= false;
 	//Generar respuesta a la petición
-	res.json(req.trip);
+	res.json(req.res);
 };
 
 //Calcular el valor de un viaje
@@ -94,6 +109,9 @@ exports.calculateTripValue = function (req, res, next){
 	req.trip.duration = req.body.duration;
 	//le asigno la distancia al viaje
 	req.trip.distance = tDistance;
+
+	//Marcar como cobrado
+	req.trip.cashed = true;
 	//Almacenar info del viaje actualizada con valores
 	req.trip.save(function(err){
 		if(err){
