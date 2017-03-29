@@ -27,8 +27,7 @@ module.exports = function() {
 	//app.use(passport.initialize()); //inicializando passort
 	//app.use(passport.session());
 
-	//importar las rutas de la app, paquete routes
-	//require('../app/routes/index.server.routes.js')(app);
+	//importar las rutas de la app, paquete routes	
 	require('../app/routes/clients.server.routes.js')(app);	
 	require('../app/routes/trips.server.routes.js')(app);	
 	require('../app/routes/drivers.server.routes.js')(app);

@@ -10,6 +10,8 @@ var TripSchema = new Schema({
 	driver : {type : Schema.Types.ObjectId, ref:'Drivers'},
 	tripDate : {type : Date, default : Date.now},
 	creationDate : {type : Date, default : Date.now},	
-	value : Number
+	value : {type: Number, default: 4000},
+	duration: {type: Number, default: 0},
+	distance : {type: Number, default: 0}
 });
 mongoose.model('Trips', TripSchema);

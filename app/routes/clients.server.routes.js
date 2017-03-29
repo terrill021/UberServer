@@ -1,21 +1,20 @@
 //archivo controlador
+var router = require("express").Router();
 var clients = require('../../app/controllers/clients.server.controller');
 
 //metodos REST
 module.exports = function(app) {
 
-//get y post
-app.route('/clients').post(clients.create).get(clients.list);
+//post
+router.post('/clients', clients.create);
 
 //get one. 
-app.route('/clients/:clientId').get(clients.read);
-
-//midleware que se ejecuta antes de cualquier otro
-//que use el parametro 'client5Id'
-app.param('clientId', clients.clientByID);
+router.get('/clients/:clientId', clients.clientByID, clients.read);
 
 //Registar credito a cliente
-app.route('/clients/setbalance/:clientId').put(clients.setBalance);
+router.post('/clients/setbalance/:clientId', clients.clientByID, clients.setBalance);
+
+app.use('/', router);
 };
 
 
