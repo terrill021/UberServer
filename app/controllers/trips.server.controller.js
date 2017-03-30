@@ -66,18 +66,25 @@ exports.getUncashedTrip= function(req, res, next){
 exports.list = function(req, res, next) {
 	Trips.find({client : req.params.clientId}, function(err, trips) {
 		if (err) {
-		return next(err);
+		res.json({error: true, description: err, message: "There was an mistake on the server, please try again"})
 		} 
 		else {
-		res.json(trips);
+			req.trips = trips;
+			next();
 		}
 	});
 };
 //fin listar todos los sitios
 
-//Mostrar clientes
-exports.read = function(req, res) {		
-	res.json(req);
+//Mostrar viajes
+exports.read = function(req, res) {	
+	//preparar respuesta
+	var resp = {};
+	resp.error = false;
+	resp.message = "operation ended correctly";
+	resp.trips = req.trips;
+	//
+	res.json(resp);
 };
 
 //confirmar solicitud de viaje

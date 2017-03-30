@@ -14,7 +14,7 @@ router.post('/trips/:clientId', clients.clientByID, drivers.searhVacantDriver,
 							    trips.createTrip, drivers.lockDriver, trips.confirmTrip);
 
 //Consultar viajes de un cliente
-router.get('/trips/:clientId', trips.list);
+router.get('/trips/:clientId', trips.list, trips.read);
 
 //cobrar un viaje
 router.post('/trips/cash/:tripId', trips.tripById, clients.clientByID,
