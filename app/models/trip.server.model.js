@@ -12,6 +12,7 @@ var TripSchema = new Schema({
 	creationDate : {type : Date, default : Date.now},	
 	value : {type: Number, default: 4000},
 	duration: {type: Number, default: 0},
-	distance : {type: Number, default: 0}
+	distance : {type: Number, default: 0},
+	cashed : {type : Boolean, default: false}
 });
 mongoose.model('Trips', TripSchema);

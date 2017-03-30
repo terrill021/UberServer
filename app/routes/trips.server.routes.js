@@ -9,6 +9,7 @@ var drivers = require('../../app/controllers/drivers.server.controller');
 //metodos REST
 module.exports = function(app) {
 
+//Solicitar un viaje
 router.post('/trips/:clientId', clients.clientByID, drivers.searhVacantDriver,
 							    trips.createTrip, drivers.lockDriver, trips.confirmTrip);
 
