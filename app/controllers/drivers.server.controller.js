@@ -8,10 +8,11 @@ exports.create = function(req, res, next) {
 	
 		drivers.save(function(err, driver) {
 			if (err) {
-			return next(err);
+				res.json({error : true, message: error})
 			}	
-			else {
-			res.json(driver);
+			else {				
+				req.driver = driver;
+				next();
 			}
 		}); 
 };
@@ -60,8 +61,13 @@ exports.searhVacantDriver = function(req, res, next){
 
 //Mostrar conductor
 exports.read = function(req, res) {
-	console.log("read");	
-	res.json(req.driver);
+	console.log("read"); 
+	req.res = {};
+	req.res.driver = req.driver;
+	req.res.error = false;
+	req.res.message = "operation ended correctly";
+	
+	res.json(req.res);
 };
 
 //Bloquear un conductor que esta ocupado

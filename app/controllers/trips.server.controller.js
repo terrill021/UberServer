@@ -57,7 +57,7 @@ exports.getUncashedTrips = function(req, res, next){
 			return next(err);
 		}else{
 			// respuesta				
-				res.json({trip : trip, error = false, message="OK"});			
+				res.json({trip : trip, error : false, message:"OK"});			
 			}
 	}); 
 };
@@ -86,6 +86,7 @@ exports.confirmTrip = function(req, res, next) {
 	//Notificar al conductor
 
 	//preparar respuesta
+	req.res = {};
 	req.res.trip = req.trip;
 	req.res.message = "The request was procesed correctly";
 	req.res.error= false;
@@ -187,5 +188,9 @@ exports.reportCashedTrip = function(req, res, next){
 	//notificar al conductor
 
 	//resonder a la petición
-	res.json({"cliente": req.client, "viaje": req.trip});
+	req.res = {};
+	req.res.error = false;
+	req.res.message = "operation ended correctly";
+	req.res.trip = req.trip;
+	res.json(req.res);
 }
