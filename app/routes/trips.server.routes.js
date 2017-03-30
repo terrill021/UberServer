@@ -22,6 +22,8 @@ router.post('/trips/cash/:tripId', trips.tripById, clients.clientByID,
 								   trips.cashTrip, drivers.unlockDriver,
 								   trips.reportCashedTrip);
 
+//consultar viaje por cobrar de un cliente
+router.get('/trips/uncashed/:driverId', drivers.driverByID, trips.getUncashedTrip);
 //
 app.use('/', router);
 };

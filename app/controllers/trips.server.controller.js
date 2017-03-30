@@ -50,14 +50,14 @@ exports.searhVacantDriver = function(req, res, next){
 
 
 //Obtener viaje sin cobrar de un conductor
-exports.getUncashedTrips = function(req, res, next){
+exports.getUncashedTrip= function(req, res, next){
 	//Agregar coductor al cuerpo de la petición	
 	Trips.findOne({ driver : req.params.driverId, cashed : false}, function(err, trip){
 		if(err){
 			return next(err);
 		}else{
 			// respuesta				
-				res.json({trip : trip, error : false, message:"OK"});			
+			res.json({trip : trip, error : false, message:"OK"});			
 			}
 	}); 
 };
