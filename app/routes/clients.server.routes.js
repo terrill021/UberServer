@@ -14,6 +14,9 @@ router.get('/clients/:clientId', clients.clientByID, clients.read);
 //Registar credito a cliente
 router.post('/clients/setbalance/:clientId', clients.clientByID, clients.setBalance);
 
+//sesion
+router.post('/clients/session', clients.session);
+//
 app.use('/', router);
 };
 

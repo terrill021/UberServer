@@ -11,6 +11,8 @@ router.post('/drivers', drivers.create, drivers.read);
 //get one. 
 router.get('/drivers/:driverId', drivers.driverByID, drivers.read);
 
+//sesion
+router.post('/drivers/session', drivers.session);
 //
 app.use('/', router);
 };

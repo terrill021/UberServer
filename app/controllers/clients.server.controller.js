@@ -77,6 +77,13 @@ exports.setBalance = function(req, res, next) {
 };
 //fin buscar y actualizar
 
-
+//iniciar sesion cliente
+exports.session = function(req, res, next) {
+	console.log(req.body)
+	Clients.findOne({user : req.body.user, password : req.body.password}, function(err, client){
+		if (err) {res.json({error : true, message : "Error interno"})};
+		res.json({error : false, message:"process ended ok", user: client});
+	})
+};
 //fin Eliminar sitio
 
