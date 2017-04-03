@@ -3,10 +3,12 @@ var config = require('./config'),
 	bodyParser = require('body-parser'),
 	//passport = require('passport'),
 	flash = require('connect-flash'),
-	session = require('express-session');
+	session = require('express-session'),
+	middleware = require('./middleware');
 
 module.exports = function() {
 	var app = express();
+	app.all('*', middleware.dominiosCruzados);
 
 	app.use(bodyParser.urlencoded({
 		extended: true
