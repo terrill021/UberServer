@@ -131,10 +131,17 @@ exports.driverByID = function(req, res, next) {
 
 //iniciar sesion conductor
 exports.session = function(req, res, next) {
-	console.log(req.body)
+	
 	Drivers.findOne({user : req.body.user, password : req.body.password}, function(err, driver){
 		if (err) {res.json({error : true, message : "Error interno"})};
 		res.json({error : false, message:"process ended ok", user: driver});
 	})
 };
 
+exports.saveToken = function (req, res, next){
+	req.driver.token = req.body.token;
+	req.driver.save(function(err, driver){
+		if (err) {res.json({error : true, message : "There was an mistake saving the push token", description: err })};
+		res.json({error :false, message: "Push id saved correctly"});
+	})
+}

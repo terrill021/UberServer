@@ -16,6 +16,9 @@ router.post('/clients/setbalance/:clientId', clients.clientByID, clients.setBala
 
 //sesion
 router.post('/clients/session', clients.session);
+
+//client register push id
+app.post('/client/reporttoken', clients.clientByID, clients.saveToken);
 //
 app.use('/', router);
 };

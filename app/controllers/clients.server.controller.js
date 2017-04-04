@@ -87,3 +87,10 @@ exports.session = function(req, res, next) {
 };
 //fin Eliminar sitio
 
+exports.saveToken = function (req, res, next){
+	req.client.token = req.body.token;
+	req.client.save(function(err, client){
+		if (err) {res.json({error : true, message : "There was an mistake saving the push token", description: err})};
+		res.json({error :false, message: "Push id saved correctly"});
+	})
+}

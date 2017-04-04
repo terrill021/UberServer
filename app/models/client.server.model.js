@@ -8,7 +8,8 @@ var ClientsSchema = new Schema({
 	phone : String,
 	email : String,
 	balance : Number, 
-	creationDate : Date
+	creationDate : Date, 
+	pushToken : {type : String, default: null}
 });
 
 mongoose.model('Clients', ClientsSchema);

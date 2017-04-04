@@ -13,6 +13,10 @@ router.get('/drivers/:driverId', drivers.driverByID, drivers.read);
 
 //sesion
 router.post('/drivers/session', drivers.session);
+
+//guardar push notification del conductor
+app.post('/driver/reporttoken', drivers.driverByID, drivers.saveToken);
+
 //
 app.use('/', router);
 };

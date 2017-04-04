@@ -24,7 +24,7 @@ exports.dominiosCruzados = function(req, res, next) {
      * Response settings
      * @type {Object}
      */
-     console.log(req.headers)
+
     var responseSettings = {
         "AccessControlAllowOrigin": req.headers.origin,
         "AccessControlAllowHeaders": "Content-Type,X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5,  Date, X-Api-Version, X-File-Name",
