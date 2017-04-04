@@ -44,7 +44,7 @@ exports.searhVacantDriver = function(req, res, next){
 				res.json(
 					{
 						error: true,
-					 	message:"No hay conductores disponibles"
+					 	message:"Not drivers avaliable"
 					}
 				);
 			}
@@ -106,7 +106,7 @@ exports.unlockDriver = function(req, res, next) {
 		}
 	});
 };
-
+ 
 
 //buscar un conductor, y guardarlo en una variable
 exports.driverByID = function(req, res, next) {
@@ -121,7 +121,7 @@ exports.driverByID = function(req, res, next) {
 			}
 			else {
 				if(driver == null) {
-					res.json({error : true, message:"El cliente no existe"});
+					res.json({error : true, message:"The client does not exist"});
 				}
 				req.driver = driver;
 				next();
@@ -133,8 +133,8 @@ exports.driverByID = function(req, res, next) {
 exports.session = function(req, res, next) {
 	
 	Drivers.findOne({user : req.body.user, password : req.body.password}, function(err, driver){
-		if (err) {res.json({error : true, message : "Error interno"})};
-		res.json({error : false, message:"process ended ok", user: driver});
+		if (err) {res.json({error : true, message : "Internal error"})};
+		res.json({error : false, message:"process ended correctly", user: driver});
 	})
 };
 

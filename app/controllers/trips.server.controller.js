@@ -38,7 +38,7 @@ exports.searhVacantDriver = function(req, res, next){
 		}else{
 			// Si no hay conductores disponibles
 			if(driver == null){				
-				res.json({error: true, message: "Lo sentimos, no hay conductores disponibles"});
+				res.json({error: true, message: "Sorry, no available drivers"});
 			}
 			//Guardo conductor en el request
 			console.log ="coductor asignado :" + driver;
@@ -95,7 +95,7 @@ exports.confirmTrip = function(req, res, next) {
 	//preparar respuesta
 	req.res = {};
 	req.res.trip = req.trip;
-	req.res.message = "The request was procesed correctly";
+	req.res.message = "The request was processed correctly";
 	req.res.error= false;
 	//Generar respuesta a la petición
 	res.json(req.res);
@@ -104,8 +104,8 @@ exports.confirmTrip = function(req, res, next) {
 //Calcular el valor de un viaje
 exports.calculateTripValue = function (req, res, next){
 	
-	var tValue = 7000;
-	var tDistance  = 3000;
+	var tValue = 70;
+	var tDistance  = 30;
 	var tduration = 20;
 	//Calcular valor viaje
 		//...
@@ -124,7 +124,7 @@ exports.calculateTripValue = function (req, res, next){
 	req.trip.save(function(err){
 		if(err){
 			//Termino el proceso y respondo con error
-			res.json({error:true, message:"Error al procesar el cobro, intente nuevamente"});
+			res.json({error:true, message:"The payment could not be processed, try again"});
 		}
 		else{
 			//Llamar al siguiente middleware 
@@ -156,7 +156,7 @@ exports.cashTrip = function (req, res, next){
 	//Se actuliza la información del cliente
 	req.client.save(function(err){
 		if (err) {
-			res.json({err:true, message:"La información del cliente no puede ser actualizada"})
+			res.json({err:true, message:"The client information could not be updated"})
 		}
 	});
 	//Se llama al siguiente middleware
@@ -172,11 +172,11 @@ exports.tripById = function(req, res, next) {
 	},
 	function(err, trip) {
 		if (err) {
-			res.json({error : true, message:"El viaje no se encuentra registrado."})
+			res.json({error : true, message:"the trip is not registered"})
 		}
 		else {
 			if(trip == null) {
-				res.json({error : true, message:"El viaje no esta registrado"});
+				res.json({error : true, message:"the trip is not registered"});
 			}
 			else{
 				//Almaceno el viaje en una variable

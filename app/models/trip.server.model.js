@@ -10,7 +10,7 @@ var TripSchema = new Schema({
 	driver : {type : Schema.Types.ObjectId, ref:'Drivers'},
 	tripDate : {type : Date, default : Date.now},
 	creationDate : {type : Date, default : Date.now},	
-	value : {type: Number, default: 4000},
+	value : {type: Number, default: 40},
 	duration: {type: Number, default: 0},
 	distance : {type: Number, default: 0},
 	cashed : {type : Boolean, default: false}

@@ -49,7 +49,7 @@ exports.clientByID = function(req, res, next) {
 		}
 		else {
 			if(client == null) {
-				res.json({error : true, message:"El cliente no existe"});
+				res.json({error : true, message:"the client does not exist"});
 			}
 			else{
 			req.client = client;
