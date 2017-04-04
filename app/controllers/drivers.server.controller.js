@@ -139,7 +139,7 @@ exports.session = function(req, res, next) {
 };
 
 exports.saveToken = function (req, res, next){
-	req.driver.token = req.body.token;
+	req.driver.pushToken = req.body.pushToken;
 	req.driver.save(function(err, driver){
 		if (err) {res.json({error : true, message : "There was an mistake saving the push token", description: err })};
 		res.json({error :false, message: "Push id saved correctly"});
