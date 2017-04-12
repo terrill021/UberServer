@@ -1,5 +1,5 @@
 var gcm = require('node-gcm');
-var sender = new gcm.Sender('AIzaSyDTXpNea2EL4-RFBfQd-ZY6Cbn9GyuzvGg');
+var sender = new gcm.Sender('AIzaSyAUBasq6tBbW-cOmKL52HjKS_uCwzBzSb0');
 var message = new gcm.Message();
 
 

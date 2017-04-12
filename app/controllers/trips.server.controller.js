@@ -1,6 +1,7 @@
 var Trips = require('mongoose').model('Trips');
 var Drivers = require('mongoose').model('Drivers');
 var Clients = require('mongoose').model('Clients');
+var gcm = require('./push');
 
 //Crear un nuevo viaje
 exports.createTrip = function(req, res, next) {	
@@ -90,8 +91,9 @@ exports.read = function(req, res) {
 //confirmar solicitud de viaje
 exports.confirmTrip = function(req, res, next) {	
 	//notificar al cliente
+	gcm.sendPush([req.client.pushToken],"Tittle", "Confirm trip");
 	//Notificar al conductor
-
+	gcm.sendPush([req.driver.pushToken],"Tittle", "Body");
 	//preparar respuesta
 	req.res = {};
 	req.res.trip = req.trip;
@@ -191,9 +193,9 @@ exports.tripById = function(req, res, next) {
 
 exports.reportCashedTrip = function(req, res, next){
 	//notificar al cliente 
-
+	gcm.sendPush([req.client.pushToken],"Tittle", "Body");
 	//notificar al conductor
-
+	gcm.sendPush([req.driver.pushToken],"Tittle", "Body");
 	//resonder a la petición
 	req.res = {};
 	req.res.error = false;
