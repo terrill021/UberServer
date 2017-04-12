@@ -82,7 +82,9 @@ exports.session = function(req, res, next) {
 	console.log(req.body)
 	Clients.findOne({user : req.body.user, password : req.body.password}, function(err, client){
 		if (err) {res.json({error : true, message : "Error interno"})};
-		res.json({error : false, message:"process ended ok", user: client});
+		req.client = client;
+		//res.json({error : false, message:"process ended ok", user: client});
+		next();
 	})
 };
 //fin Eliminar sitio
@@ -91,6 +93,6 @@ exports.saveToken = function (req, res, next){
 	req.client.pushToken = req.body.pushToken;
 	req.client.save(function(err, client){
 		if (err) {res.json({error : true, message : "There was an mistake saving the push token", description: err})};
-		res.json({error :false, message: "Push id saved correctly"});
+		res.json({error :false, message: "Session started correctly", user: client});
 	})
 }

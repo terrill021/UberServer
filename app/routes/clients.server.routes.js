@@ -15,7 +15,7 @@ router.get('/clients/:clientId', clients.clientByID, clients.read);
 router.post('/clients/setbalance/:clientId', clients.clientByID, clients.setBalance);
 
 //sesion
-router.post('/clients/session', clients.session);
+router.post('/clients/session', clients.session, clients.saveToken);
 
 //client register push id
 app.post('/client/reporttoken', clients.clientByID, clients.saveToken);

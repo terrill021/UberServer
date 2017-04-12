@@ -134,7 +134,9 @@ exports.session = function(req, res, next) {
 	
 	Drivers.findOne({user : req.body.user, password : req.body.password}, function(err, driver){
 		if (err) {res.json({error : true, message : "Internal error"})};
-		res.json({error : false, message:"process ended correctly", user: driver});
+		req.driver = driver;
+		next();
+		//res.json({error : false, message:"process ended correctly", user: driver});
 	})
 };
 
@@ -142,6 +144,6 @@ exports.saveToken = function (req, res, next){
 	req.driver.pushToken = req.body.pushToken;
 	req.driver.save(function(err, driver){
 		if (err) {res.json({error : true, message : "There was an mistake saving the push token", description: err })};
-		res.json({error :false, message: "Push id saved correctly"});
+		res.json({error :false, message: "Push id saved correctly", user: driver});
 	})
 }
